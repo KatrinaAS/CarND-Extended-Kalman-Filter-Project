@@ -24,3 +24,6 @@ the RMSE of the estimations compared to the ground truth.
    * On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
 4. Run it: `./ExtendedKF `
 
+
+## Udacity Project Thoughts.
+If you wish to view my lookback on the project, you can find it [here](ProjectReview.md)
