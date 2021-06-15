@@ -1,5 +1,6 @@
+#include <iostream>
 #include "kalman_filter.h"
-
+#include "tools.h"
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 
@@ -38,7 +39,16 @@ void KalmanFilter::Update(const VectorXd &z) {
 }
 
 void KalmanFilter::UpdateEKF(const VectorXd &z) {
-  /**
-   * TODO: update the state by using Extended Kalman Filter equations
-   */
+
+    VectorXd y = z - Tools::CartisenToPolar(x_);
+    // This caught me out for so long, I did not realise I would need to renormalize after the subtraction, I thought
+    // using atan2 was enough.
+    //std::cout << "y = " << y << std::endl;
+    y[1] = Tools::normalizePhi(y[1]);
+    MatrixXd S = H_ * P_ * H_.transpose() + R_;
+    MatrixXd K = P_ * H_.transpose() * S.inverse();
+    x_=x_+(K * y);
+    long vec_size = x_.size();
+    MatrixXd I = MatrixXd::Identity(vec_size, vec_size);
+    P_ = (I - K * H_) * P_;
 }

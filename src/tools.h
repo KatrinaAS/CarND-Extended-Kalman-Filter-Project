@@ -27,6 +27,10 @@ class Tools {
    */
   Eigen::MatrixXd CalculateJacobian(const Eigen::VectorXd& x_state);
 
+  static Eigen::VectorXd CartisenToPolar(const Eigen::VectorXd& x_state);
+
+  static float normalizePhi(float phi);
+
 };
 
 #endif  // TOOLS_H_
