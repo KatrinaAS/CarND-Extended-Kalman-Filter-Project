@@ -59,7 +59,7 @@ Eigen::VectorXd Tools::CartisenToPolar(const Eigen::VectorXd& x_state) {
     float py=x_state[1];
     float vx=x_state[2];
     float vy=x_state[3];
-    float rho=sqrt(px*px+py*py);
+    float rho= hypot(px,py);
     float phi=atan2(py, px);
     float rhodot = 0;
     if (fabs(rho)>0.0001) {

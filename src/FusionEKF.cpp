@@ -84,7 +84,6 @@ void FusionEKF::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
                     0,
                     0;
         } else if (measurement_pack.sensor_type_ == MeasurementPackage::LASER) {
-            ekf_.x_ = ekf_.x_.setZero();
             ekf_.x_ << measurement_pack.raw_measurements_[0],
                     measurement_pack.raw_measurements_[1],
                     0,
